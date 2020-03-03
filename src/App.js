@@ -1,10 +1,8 @@
 import React from "react";
 import { HoverMorphIcon } from "react-svg-buttons";
 import qs from "qs";
-import assert from "assert";
 
 import "./App.css";
-import { findByLabelText } from "@testing-library/react";
 
 function isPositiveInteger(n) {
   return n >>> 0 === parseFloat(n);
