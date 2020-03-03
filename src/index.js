@@ -11,11 +11,15 @@ import App from "./App";
 // import CompleteButError from "./components/completeButError/index";
 
 import "./index.css";
+import Receipt from "./components/receipt";
+import NoMatchPage from "./components/NoMatchPage";
 
 const routing = (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={App} />
+      <Route exact path="/receipt" component={Receipt} />
+      <Route path="/error" component={NoMatchPage} />
     </Switch>
   </BrowserRouter>
 );

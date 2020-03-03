@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { HoverMorphIcon } from "react-svg-buttons";
 import qs from "qs";
 
@@ -12,13 +13,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    // Grab query string and check if table_id is an int
     var prefixed = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
     console.log(prefixed);
 
     var table_id;
     try {
-      if (isPositiveInteger(prefixed.table_id)) {
-        table_id = parseInt(prefixed.table_id);
+      if (Object.keys(prefixed).length === 1) {
+        if (isPositiveInteger(prefixed.table_id)) {
+          table_id = parseInt(prefixed.table_id);
+        }
       }
     } catch (e) {
       console.log(e);
@@ -27,6 +31,24 @@ class App extends React.Component {
     this.state = {
       table_id: table_id
     };
+
+    this.formulateReceipt = this.formulateReceipt.bind(this);
+  }
+
+  formulateReceipt() {
+    // Test Data for now
+    const data = { a: 1, b: 2, c: 3 };
+
+    if (isPositiveInteger(this.state.table_id)) {
+      this.props.history.push({
+        pathname: "/receipt",
+        state: { items: { ...data } }
+      });
+    } else {
+      this.props.history.push({
+        pathname: "/error"
+      });
+    }
   }
 
   componentDidMount() {}
@@ -42,6 +64,7 @@ class App extends React.Component {
               size={90}
               thickness={2}
               color="#dd6e78"
+              onClick={this.formulateReceipt}
             />
           </div>
           <span style={{ alignSelf: "center" }}>
