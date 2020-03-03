@@ -44,7 +44,9 @@ class App extends React.Component {
               color="#dd6e78"
             />
           </div>
-          <span style={{ alignSelf: "center" }}>Table ID = {this.state.table_id}</span>
+          <span style={{ alignSelf: "center" }}>
+            Table ID = {this.state.table_id == null ? "NOT FOUND" : this.state.table_id}
+          </span>
         </div>
       </div>
     );
