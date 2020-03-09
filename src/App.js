@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import { HoverMorphIcon } from "react-svg-buttons";
 import qs from "qs";
 
@@ -36,13 +36,25 @@ class App extends React.Component {
   }
 
   formulateReceipt() {
-    // Test Data for now
-    const data = { a: 1, b: 2, c: 3 };
-
     if (isPositiveInteger(this.state.table_id)) {
-      this.props.history.push({
-        pathname: "/receipt",
-        state: { items: { ...data } }
+      const url =
+        "https://821hh4s1ti.execute-api.us-east-2.amazonaws.com/dev/getReceipt/?table_id=" +
+        this.state.table_id.toString();
+      fetch(url, {
+        method: "get"
+      }).then(response => {
+        response.json().then(r => {
+          if (r.success) {
+            this.props.history.push({
+              pathname: "/receipt",
+              state: { items: r }
+            });
+          } else {
+            this.props.history.push({
+              pathname: "/error"
+            });
+          }
+        });
       });
     } else {
       this.props.history.push({
