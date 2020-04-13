@@ -12,6 +12,7 @@ import App from "./App";
 
 import "./index.css";
 import Receipt from "./components/receipt";
+import Checkout from "./components/checkout";
 import NoMatchPage from "./components/NoMatchPage";
 
 const routing = (
@@ -19,6 +20,7 @@ const routing = (
     <Switch>
       <Route exact path="/" component={App} />
       <Route exact path="/receipt" component={Receipt} />
+      <Route exact path="/checkout" component={Checkout} />
       <Route path="/error" component={NoMatchPage} />
     </Switch>
   </BrowserRouter>

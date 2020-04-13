@@ -21,6 +21,7 @@ class Receipt extends React.Component {
     this.state = {
       receipt: this.props.location.state.receipt,
       items: this.props.location.state.receipt.items,
+      table_id: this.props.location.state.receipt.table_id,
       subtotal: this.props.location.state.receipt.total,
       tax: this.props.location.state.receipt.total * tax,
       tip: this.props.location.state.receipt.total * (1 + tax) * 0.15,
@@ -98,34 +99,21 @@ class Receipt extends React.Component {
   handleFormSubmit(e) {
     e.preventDefault();
 
-    if (!e.target.checkValidity()) {
-      return;
-    }
-
-    let userData = {
-      eventId: this.state.event.event_id,
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      emailAddress: this.state.emailAddress,
-      office: this.state.office,
-      options: this.state.event.eto
-    };
-
-    // fetch("http://172.23.164.154:4000/submitForm", {
-    fetch("http://172.23.164.154:4000/submitForm", {
+    fetch("https://821hh4s1ti.execute-api.us-east-2.amazonaws.com/dev/initiateCheckout", {
       method: "POST",
-      body: JSON.stringify(userData),
+      body: JSON.stringify({ ...this.state }),
       headers: {}
     }).then((response) => {
       response.json().then((data) => {
-        if (data.success === "true") {
+        if (data.success === true) {
           console.log(data);
           this.props.history.push({
             pathname: "/checkout",
-            state: { ticket: data.ticket, office: this.state.office }
+            state: { ticket: data.ticket }
           });
         } else {
           // push to 404 or something
+          console.log(data);
         }
       });
     });
@@ -200,6 +188,13 @@ class Receipt extends React.Component {
                   </div>
                 </div>
               </div>
+            </div>
+            <br></br>
+            <br></br>
+            <div className="submitContainer">
+              <Button variant="primary" type="submit">
+                Pay
+              </Button>
             </div>
           </Form>
         </div>

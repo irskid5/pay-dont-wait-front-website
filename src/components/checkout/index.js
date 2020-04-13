@@ -6,7 +6,6 @@ class Checkout extends React.Component {
     super(props);
     this.state = {
       monerisCheckoutTicket: this.props.location.state.ticket,
-      office: this.props.location.state.office,
       mode: "qa",
       request_url: "https://gatewayt.moneris.com/chkt/display/index.php",
       checkout_div: "moneris-checkout",
@@ -39,7 +38,7 @@ class Checkout extends React.Component {
 
   monerisCheckout() {
     var me = this;
-    window.addEventListener("message", function(e) {
+    window.addEventListener("message", function (e) {
       console.log("setting receive message");
       me.receivePostMessage(e);
     });
@@ -213,49 +212,49 @@ class Checkout extends React.Component {
 
   handlePaymentComplete(resp) {
     console.log("In handlePaymentComplete handler currently");
-    fetch("http://172.23.164.154:4000/completePayment", {
-      method: "POST",
-      body: JSON.stringify({
-        ticket: this.state.monerisCheckoutTicket,
-        office: this.state.office,
-        language: "en"
-      }),
-      headers: {}
-    })
-      .then(response => {
-        response
-          .json()
-          .then(r => {
-            if (r.success === "false") {
-              this.props.history.push({ pathname: "/completeButError", state: r });
-            } else {
-              console.log(r);
-              this.props.history.push({ pathname: "/orderConfirmation", state: r.data });
-            }
-          })
-          .catch(error => {
-            this.props.history.push({
-              pathname: "/completeButError",
-              state: { success: "false", error: error }
-            });
-          });
-      })
-      .catch(error => {
-        this.props.history.push({
-          pathname: "/completeButError",
-          state: { success: "false", error: error }
-        });
-      });
+    // fetch("http://172.23.164.154:4000/completePayment", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     ticket: this.state.monerisCheckoutTicket,
+    //     office: this.state.office,
+    //     language: "en"
+    //   }),
+    //   headers: {}
+    // })
+    //   .then(response => {
+    //     response
+    //       .json()
+    //       .then(r => {
+    //         if (r.success === "false") {
+    //           this.props.history.push({ pathname: "/completeButError", state: r });
+    //         } else {
+    //           console.log(r);
+    //           this.props.history.push({ pathname: "/orderConfirmation", state: r.data });
+    //         }
+    //       })
+    //       .catch(error => {
+    //         this.props.history.push({
+    //           pathname: "/completeButError",
+    //           state: { success: "false", error: error }
+    //         });
+    //       });
+    //   })
+    //   .catch(error => {
+    //     this.props.history.push({
+    //       pathname: "/completeButError",
+    //       state: { success: "false", error: error }
+    //     });
+    //   });
   }
 
   handleCancelTransaction(resp) {
     console.log("In handleCancelTransaction handler currently");
-    this.setState({ toRender: <Link to="/cancelTransaction" /> });
+    // this.setState({ toRender: <Link to="/cancelTransaction" /> });
   }
 
   handleErrorEvent(resp) {
     console.log("In handleErrorEvent handler currently");
-    this.setState({ toRender: <Link to="/cancelTransaction" /> });
+    // this.setState({ toRender: <Link to="/cancelTransaction" /> });
   }
 
   componentDidMount() {
