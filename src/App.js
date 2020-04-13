@@ -42,12 +42,12 @@ class App extends React.Component {
         this.state.table_id.toString();
       fetch(url, {
         method: "get"
-      }).then(response => {
-        response.json().then(r => {
+      }).then((response) => {
+        response.json().then((r) => {
           if (r.success) {
             this.props.history.push({
               pathname: "/receipt",
-              state: { items: r }
+              state: { receipt: r }
             });
           } else {
             this.props.history.push({
