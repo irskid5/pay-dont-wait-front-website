@@ -13,6 +13,9 @@ import App from "./App";
 import "./index.css";
 import Receipt from "./components/receipt";
 import Checkout from "./components/checkout";
+import PaymentSuccessful from "./components/PaymentSuccessful";
+import PaymentCancelled from "./components/PaymentCancelled";
+import PaymentError from "./components/PaymentError";
 import NoMatchPage from "./components/NoMatchPage";
 
 const routing = (
@@ -21,6 +24,9 @@ const routing = (
       <Route exact path="/" component={App} />
       <Route exact path="/receipt" component={Receipt} />
       <Route exact path="/checkout" component={Checkout} />
+      <Route exact path="/success" component={PaymentSuccessful} />
+      <Route exact path="/cancelled" component={PaymentCancelled} />
+      <Route exact path="/paymentError" component={PaymentError} />
       <Route path="/error" component={NoMatchPage} />
     </Switch>
   </BrowserRouter>

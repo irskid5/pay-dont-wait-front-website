@@ -215,13 +215,9 @@ class Checkout extends React.Component {
 
   handlePaymentComplete(resp) {
     console.log("In handlePaymentComplete handler currently");
-    this.setState({
-      toRender: (
-        <div>
-          <div>Succsess!</div>
-          <div>Ticket: {this.state.monerisCheckoutTicket}</div>
-        </div>
-      )
+    this.props.history.push({
+      pathname: "/success",
+      state: { ticket: this.state.monerisCheckoutTicket }
     });
     // fetch("http://172.23.164.154:4000/completePayment", {
     //   method: "POST",
@@ -260,26 +256,18 @@ class Checkout extends React.Component {
 
   handleCancelTransaction(resp) {
     console.log("In handleCancelTransaction handler currently");
-    this.setState({
-      toRender: (
-        <div>
-          <div>Cancelled!</div>
-          <div>Ticket: {this.state.monerisCheckoutTicket}</div>
-        </div>
-      )
+    this.props.history.push({
+      pathname: "/cancelled",
+      state: { ticket: this.state.monerisCheckoutTicket }
     });
     // this.setState({ toRender: <Link to="/cancelTransaction" /> });
   }
 
   handleErrorEvent(resp) {
     console.log("In handleErrorEvent handler currently");
-    this.setState({
-      toRender: (
-        <div>
-          <div>Error!</div>
-          <div>Ticket: {this.state.monerisCheckoutTicket}</div>
-        </div>
-      )
+    this.props.history.push({
+      pathname: "/paymentError",
+      state: { ticket: this.state.monerisCheckoutTicket }
     });
     // this.setState({ toRender: <Link to="/cancelTransaction" /> });
   }
