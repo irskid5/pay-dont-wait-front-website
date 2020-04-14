@@ -79,9 +79,6 @@ class App extends React.Component {
               onClick={this.formulateReceipt}
             />
           </div>
-          <span style={{ alignSelf: "center" }}>
-            Table ID = {this.state.table_id == null ? "NOT FOUND" : this.state.table_id}
-          </span>
         </div>
       </div>
     );
@@ -89,3 +86,7 @@ class App extends React.Component {
 }
 
 export default App;
+
+// <span style={{ alignSelf: "center" }}>
+//             Table ID = {this.state.table_id == null ? "NOT FOUND" : this.state.table_id}
+//           </span>
