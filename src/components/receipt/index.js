@@ -101,15 +101,21 @@ class Receipt extends React.Component {
   }
 
   handleTipChange(e) {
+    let tipPercent = e.target.value;
+    if (tipPercent !== "") {
+      if (Math.ceil(parseInt(tipPercent)) > 100) {
+        tipPercent = "100";
+      }
+    }
     this.setState({
-      tipPercent: e.target.value !== "" ? Math.ceil(parseInt(e.target.value)) : "",
+      tipPercent: e.target.value !== "" ? Math.ceil(parseInt(tipPercent)) : "",
       tip:
         e.target.value !== ""
-          ? (this.state.subtotal * (1 + tax) * Math.ceil(parseInt(e.target.value))) / 100
+          ? (this.state.subtotal * (1 + tax) * Math.ceil(parseInt(tipPercent))) / 100
           : 0,
       total:
         e.target.value !== ""
-          ? this.state.subtotal * (1 + tax) * (1 + Math.ceil(parseInt(e.target.value)) / 100)
+          ? this.state.subtotal * (1 + tax) * (1 + Math.ceil(parseInt(tipPercent)) / 100)
           : this.state.subtotal * (1 + tax)
     });
   }
