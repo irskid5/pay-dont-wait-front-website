@@ -59,8 +59,11 @@ class Receipt extends React.Component {
       items: itemsCopy,
       subtotal: endTotal,
       tax: endTotal * tax,
-      tip: (endTotal * (1 + tax) * this.state.tipPercent) / 100,
-      total: endTotal * (1 + tax) * (1 + this.state.tipPercent / 100)
+      tip: this.state.tipPercent !== "" ? (endTotal * (1 + tax) * this.state.tipPercent) / 100 : 0,
+      total:
+        this.state.tipPercent !== ""
+          ? endTotal * (1 + tax) * (1 + this.state.tipPercent / 100)
+          : endTotal * (1 + tax)
     });
     console.log(this.state);
   }
@@ -88,15 +91,18 @@ class Receipt extends React.Component {
       items: itemsCopy,
       subtotal: endTotal,
       tax: endTotal * tax,
-      tip: (endTotal * (1 + tax) * this.state.tipPercent) / 100,
-      total: endTotal * (1 + tax) * (1 + this.state.tipPercent / 100)
+      tip: this.state.tipPercent !== "" ? (endTotal * (1 + tax) * this.state.tipPercent) / 100 : 0,
+      total:
+        this.state.tipPercent !== ""
+          ? endTotal * (1 + tax) * (1 + this.state.tipPercent / 100)
+          : endTotal * (1 + tax)
     });
     console.log(this.state);
   }
 
   handleTipChange(e) {
     this.setState({
-      tipPercent: e.target.value !== "" ? Math.ceil(parseInt(e.target.value)) : 0,
+      tipPercent: e.target.value !== "" ? Math.ceil(parseInt(e.target.value)) : "",
       tip:
         e.target.value !== ""
           ? (this.state.subtotal * (1 + tax) * Math.ceil(parseInt(e.target.value))) / 100
