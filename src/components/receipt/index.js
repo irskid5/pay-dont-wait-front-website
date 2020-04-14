@@ -41,11 +41,22 @@ class Receipt extends React.Component {
     var itemsCopy = { ...this.state.items };
     var itemCopy = { ...this.state.items[e.target.name] };
 
-    if (itemCopy.number + 1 >= itemCopy.maxNumber) {
-      itemCopy.number = itemCopy.maxNumber;
-    } else {
+    if (itemCopy.number >= 1 && itemCopy.number < itemCopy.maxNumber) {
       itemCopy.number += 1;
     }
+    if (itemCopy.number === 0.5) {
+      itemCopy.number = 1;
+    }
+    if (itemCopy.number === 0.33) {
+      itemCopy.number = 0.5;
+    }
+    if (itemCopy.number === 0.25) {
+      itemCopy.number = 0.33;
+    }
+    if (itemCopy.number === 0) {
+      itemCopy.number = 0.25;
+    }
+
     itemCopy.total = itemCopy.cost * itemCopy.number;
     itemsCopy[e.target.name] = { ...itemCopy };
 
@@ -72,10 +83,24 @@ class Receipt extends React.Component {
     var itemsCopy = { ...this.state.items };
     var itemCopy = { ...this.state.items[e.target.name] };
 
-    if (itemCopy.number - 1 <= 0) {
-      itemCopy.number = 0;
-    } else {
+    if (itemCopy.number > 1) {
       itemCopy.number -= 1;
+    } else {
+      if (itemCopy.number === 1) {
+        itemCopy.number = 0.5;
+      } else {
+        if (itemCopy.number === 0.5) {
+          itemCopy.number = 0.33;
+        } else {
+          if (itemCopy.number === 0.33) {
+            itemCopy.number = 0.25;
+          } else {
+            if (itemCopy.number === 0.25) {
+              itemCopy.number = 0;
+            }
+          }
+        }
+      }
     }
 
     itemCopy.total = itemCopy.cost * itemCopy.number;
