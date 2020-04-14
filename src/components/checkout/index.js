@@ -81,6 +81,9 @@ class Checkout extends React.Component {
     console.log("fullscreen is : " + this.state.fullscreen);
 
     var chkt_target_style = {};
+    var chkt_iframe_style = {};
+    var chkt_target = null;
+    var chkt_iframe = null;
 
     var checkoutUrl = this.state.request_url + "?tck=" + ticket;
 
@@ -99,13 +102,13 @@ class Checkout extends React.Component {
       chkt_target_style.minHeight = "100%";
       chkt_target_style.height = "100%";
 
-      var chkt_iframe_style = {};
+      chkt_iframe_style = {};
 
       chkt_iframe_style.width = "100%";
       chkt_iframe_style.height = "100%";
       chkt_iframe_style.border = "none";
 
-      var chkt_iframe = (
+      chkt_iframe = (
         <iframe
           title={this.state.checkout_div + "-Frame"}
           id={this.state.checkout_div + "-Frame"}
@@ -115,7 +118,7 @@ class Checkout extends React.Component {
         />
       );
 
-      var chkt_target = (
+      chkt_target = (
         <div id={this.state.checkout_div} style={chkt_target_style}>
           {chkt_iframe}
         </div>
@@ -135,13 +138,13 @@ class Checkout extends React.Component {
       chkt_target_style.minHeight = "100%";
       chkt_target_style.height = "100%";
 
-      var chkt_iframe_style = {};
+      chkt_iframe_style = {};
 
       chkt_iframe_style.width = "100%";
       chkt_iframe_style.height = "100%";
       chkt_iframe_style.border = "none";
 
-      var chkt_iframe = (
+      chkt_iframe = (
         <iframe
           title={this.state.checkout_div + "-Frame"}
           id={this.state.checkout_div + "-Frame"}
@@ -151,7 +154,7 @@ class Checkout extends React.Component {
         />
       );
 
-      var chkt_target = (
+      chkt_target = (
         <div id={this.state.checkout_div} style={chkt_target_style}>
           {chkt_iframe}
         </div>

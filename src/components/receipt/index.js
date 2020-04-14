@@ -134,6 +134,7 @@ class Receipt extends React.Component {
                       variant="outline-primary"
                       size="sm"
                       onClick={this.handleDecrement}
+                      style={{ width: "8vw", height: "8vw" }}
                     >
                       -
                     </Button>
@@ -143,6 +144,7 @@ class Receipt extends React.Component {
                       variant="outline-primary"
                       size="sm"
                       onClick={this.handleIncrement}
+                      style={{ width: "8vw", height: "8vw" }}
                     >
                       +
                     </Button>
