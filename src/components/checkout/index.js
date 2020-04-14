@@ -6,6 +6,7 @@ class Checkout extends React.Component {
     super(props);
     this.state = {
       monerisCheckoutTicket: this.props.location.state.ticket,
+      table_id: this.props.location.state.table_id,
       mode: "qa",
       request_url: "https://gatewayt.moneris.com/chkt/display/index.php",
       checkout_div: "moneris-checkout",
