@@ -11,8 +11,8 @@ import App from "./App";
 // import CompleteButError from "./components/completeButError/index";
 
 import "./index.css";
-import Receipt from "./components/Receipt";
-import Checkout from "./components/Checkout";
+import Receipt from "./components/receipt";
+import Checkout from "./components/checkout";
 import PaymentSuccessful from "./components/PaymentSuccessful";
 import PaymentCancelled from "./components/PaymentCancelled";
 import PaymentError from "./components/PaymentError";
