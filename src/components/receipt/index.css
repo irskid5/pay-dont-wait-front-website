@@ -11,8 +11,10 @@
   display: flex;
   flex-direction: column;
   margin: 15px;
-  border: 2px solid #cc6666;
-  border-radius: 15px;
+  /* border: 2px solid #cc6666; */
+  /* border-radius: 15px; */
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+  background-color: #fffafa;
 }
 .item {
   display: flex;
@@ -44,10 +46,12 @@
   margin: 15px;
   display: flex;
   flex-direction: column;
-  border: 2px solid #cc6666;
-  border-radius: 15px;
+  /* border: 2px solid #cc6666; */
+  /* border-radius: 15px; */
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
   padding-top: 8px;
   padding-bottom: 8px;
+  background-color: #fffafa;
 }
 .finalItem {
   flex: 1;
