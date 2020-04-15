@@ -6,7 +6,9 @@ class PaymentError extends React.Component {
     super(props);
 
     this.state = {
-      monerisCheckoutTicket: this.props.location.state.ticket
+      success: this.props.location.state.success,
+      error: this.props.location.state.error,
+      ticket: this.props.location.state.ticket
     };
   }
 
@@ -14,7 +16,8 @@ class PaymentError extends React.Component {
     return (
       <div>
         <div>Error!</div>
-        <div>Ticket: {this.state.monerisCheckoutTicket}</div>
+        <div>Ticket: {this.state.ticket}</div>
+        <div>Error: {this.state.error}</div>
       </div>
     );
   }

@@ -6,18 +6,14 @@ class PaymentSuccessful extends React.Component {
     super(props);
 
     this.state = {
-      success: this.props.location.state.success,
-      receipt: this.props.location.state.data,
-      ticket: this.props.location.state.ticket
+      table_id: this.props.location.state.table_id
     };
   }
 
   render() {
     return (
       <div>
-        <div>Success!</div>
-        <div>Ticket: {this.state.ticket}</div>
-        <div>Data: {JSON.stringify(this.state.receipt)}</div>
+        <div>No Active Receipt for this Table ID: {this.state.table_id}</div>
       </div>
     );
   }

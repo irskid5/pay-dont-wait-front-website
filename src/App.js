@@ -45,10 +45,17 @@ class App extends React.Component {
       }).then((response) => {
         response.json().then((r) => {
           if (r.success) {
-            this.props.history.push({
-              pathname: "/receipt",
-              state: { receipt: r }
-            });
+            if (r.items.keys() > 0) {
+              this.props.history.push({
+                pathname: "/receipt",
+                state: { receipt: r }
+              });
+            } else {
+              this.props.history.push({
+                pathname: "/noReceipt",
+                state: { table_id: this.state.table_id }
+              });
+            }
           } else {
             this.props.history.push({
               pathname: "/error"

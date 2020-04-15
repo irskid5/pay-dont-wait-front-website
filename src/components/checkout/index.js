@@ -216,43 +216,60 @@ class Checkout extends React.Component {
 
   handlePaymentComplete(resp) {
     console.log("In handlePaymentComplete handler currently");
-    this.props.history.push({
-      pathname: "/success",
-      state: { ticket: this.state.monerisCheckoutTicket }
-    });
-    // fetch("http://172.23.164.154:4000/completePayment", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     ticket: this.state.monerisCheckoutTicket,
-    //     office: this.state.office,
-    //     language: "en"
-    //   }),
-    //   headers: {}
-    // })
-    //   .then(response => {
-    //     response
-    //       .json()
-    //       .then(r => {
-    //         if (r.success === "false") {
-    //           this.props.history.push({ pathname: "/completeButError", state: r });
-    //         } else {
-    //           console.log(r);
-    //           this.props.history.push({ pathname: "/orderConfirmation", state: r.data });
-    //         }
-    //       })
-    //       .catch(error => {
-    //         this.props.history.push({
-    //           pathname: "/completeButError",
-    //           state: { success: "false", error: error }
-    //         });
-    //       });
-    //   })
-    //   .catch(error => {
-    //     this.props.history.push({
-    //       pathname: "/completeButError",
-    //       state: { success: "false", error: error }
-    //     });
-    //   });
+    fetch("https://821hh4s1ti.execute-api.us-east-2.amazonaws.com/dev/processPayment", {
+      method: "POST",
+      body: JSON.stringify({
+        ticket: this.state.monerisCheckoutTicket,
+        table_id: this.state.table_id
+      }),
+      headers: {}
+    })
+      .then((response) => {
+        response
+          .json()
+          .then((r) => {
+            if (!r.success) {
+              this.props.history.push({
+                pathname: "/paymentError",
+                state: {
+                  success: r.success,
+                  ticket: this.state.monerisCheckoutTicket,
+                  error: r.error
+                }
+              });
+            } else {
+              console.log(r);
+              this.props.history.push({
+                pathname: "/success",
+                state: {
+                  success: r.success,
+                  ticket: this.state.monerisCheckoutTicket,
+                  data: r.receipt
+                }
+              });
+            }
+          })
+          .catch((error) => {
+            this.props.history.push({
+              pathname: "/paymentError",
+              state: {
+                success: "false",
+                ticket: this.state.monerisCheckoutTicket,
+                error: "Pushing error - " + error.toString()
+              }
+            });
+          });
+      })
+      .catch((error) => {
+        this.props.history.push({
+          pathname: "/paymentError",
+          state: {
+            success: "false",
+            ticket: this.state.monerisCheckoutTicket,
+            error: "Fetch error - " + error.toString()
+          }
+        });
+      });
   }
 
   handleCancelTransaction(resp) {
@@ -268,7 +285,11 @@ class Checkout extends React.Component {
     console.log("In handleErrorEvent handler currently");
     this.props.history.push({
       pathname: "/paymentError",
-      state: { ticket: this.state.monerisCheckoutTicket }
+      state: {
+        success: "false",
+        ticket: this.state.monerisCheckoutTicket,
+        error: "Error Event"
+      }
     });
     // this.setState({ toRender: <Link to="/cancelTransaction" /> });
   }

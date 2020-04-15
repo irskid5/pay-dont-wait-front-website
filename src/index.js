@@ -16,6 +16,7 @@ import Checkout from "./components/checkout";
 import PaymentSuccessful from "./components/PaymentSuccessful";
 import PaymentCancelled from "./components/PaymentCancelled";
 import PaymentError from "./components/PaymentError";
+import NoReceipt from "./components/NoReceipt";
 import NoMatchPage from "./components/NoMatchPage";
 
 const routing = (
@@ -27,6 +28,7 @@ const routing = (
       <Route exact path="/success" component={PaymentSuccessful} />
       <Route exact path="/cancelled" component={PaymentCancelled} />
       <Route exact path="/paymentError" component={PaymentError} />
+      <Route exact path="/noReceipt" component={NoReceipt} />
       <Route path="/error" component={NoMatchPage} />
     </Switch>
   </BrowserRouter>
