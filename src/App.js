@@ -1,7 +1,9 @@
 import React from "react";
+import { CSSTransitionGroup } from "react-transition-group";
 //import { Link } from "react-router-dom";
 import { HoverMorphIcon } from "react-svg-buttons";
 import qs from "qs";
+import NoTablePopup from "./components/NoTablePopup";
 
 import "./App.css";
 
@@ -29,7 +31,8 @@ class App extends React.Component {
     }
 
     this.state = {
-      table_id: table_id
+      table_id: table_id,
+      NoTablePopup: null
     };
 
     this.formulateReceipt = this.formulateReceipt.bind(this);
@@ -51,10 +54,14 @@ class App extends React.Component {
             });
           } else {
             if (r.table_id != null) {
-              this.props.history.push({
-                pathname: "/noReceipt",
-                state: { table_id: r.table_id }
+              this.setState({
+                NoTablePopup: <NoTablePopup />
               });
+              setTimeout(() => {
+                this.setState({
+                  NoTablePopup: null
+                });
+              }, 3000);
             } else {
               this.props.history.push({
                 pathname: "/error"
@@ -76,6 +83,15 @@ class App extends React.Component {
     return (
       <div className="AppContainer">
         <div className="App">
+          <div className="popupContainer">
+            <CSSTransitionGroup
+              transitionName="example"
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={300}
+            >
+              {this.state.NoTablePopup}
+            </CSSTransitionGroup>
+          </div>
           <div className="iconContainer">
             <HoverMorphIcon
               baseType="arrowRight"
