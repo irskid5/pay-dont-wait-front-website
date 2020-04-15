@@ -1,0 +1,11 @@
+.ConfirmContainer {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+}
+.Confirm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #111111;
+}

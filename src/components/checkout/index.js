@@ -243,8 +243,7 @@ class Checkout extends React.Component {
                 pathname: "/success",
                 state: {
                   success: r.success,
-                  ticket: this.state.monerisCheckoutTicket,
-                  data: r.receipt
+                  data: r.receipt.response
                 }
               });
             }
