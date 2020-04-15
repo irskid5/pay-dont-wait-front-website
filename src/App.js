@@ -45,21 +45,21 @@ class App extends React.Component {
       }).then((response) => {
         response.json().then((r) => {
           if (r.success) {
-            if (r.items.keys() > 0) {
+            this.props.history.push({
+              pathname: "/receipt",
+              state: { receipt: r }
+            });
+          } else {
+            if (r.table_id != null) {
               this.props.history.push({
-                pathname: "/receipt",
-                state: { receipt: r }
+                pathname: "/noReceipt",
+                state: { table_id: r.table_id }
               });
             } else {
               this.props.history.push({
-                pathname: "/noReceipt",
-                state: { table_id: this.state.table_id }
+                pathname: "/error"
               });
             }
-          } else {
-            this.props.history.push({
-              pathname: "/error"
-            });
           }
         });
       });
