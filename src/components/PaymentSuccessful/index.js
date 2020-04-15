@@ -17,10 +17,18 @@ class PaymentSuccessful extends React.Component {
     return (
       <div className="ConfirmContainer">
         <div className="Confirm">
-          <div>See! You didn't have to wait!</div>
+          <div className="checkmarkContainer">
+            <svg className="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+              <circle className="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+              <path className="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+            </svg>
+          </div>
+          <div>So you didn't have to wait!</div>
           <div>Congrats!</div>
           <div>Below is your receipt</div>
-          <div>Please keep it for your records!</div>
+          <div style={{ fontWeight: "200", fontSize: "10pt" }}>
+            Please keep it for your records!
+          </div>
           <div className="receiptItems">
             <div className="item" style={{ fontWeight: "500", paddingBottom: "12px" }}>
               <div className="itemName" style={{ borderBottom: "2px solid #f0eee4" }}>
